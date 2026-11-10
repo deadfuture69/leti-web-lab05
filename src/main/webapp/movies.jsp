@@ -2,7 +2,11 @@
 <%@ page import="edu.web.lab05.Movie, java.util.List" %>
 <%
     String name = request.getParameter("name");
-    if (name == null || name.isBlank()) {
+    if (name == null) {
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        return;
+    }
+    if (name.isBlank()) {
         response.setStatus(400);
         request.getRequestDispatcher("/WEB-INF/views/missing-name.jsp").forward(request, response);
         return;
